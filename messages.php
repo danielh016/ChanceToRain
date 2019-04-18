@@ -10,14 +10,14 @@ if($messageText == "weather") {
 	$answer = $text;
 }
 
+if($messageText != "hi" && $messageText != "weather" && $messageText != "more") {
+	$answer = 'Perhaps you may try "hi", "weather" or "more"!';
+}
+
 $response = [
     'recipient' => [ 'id' => $senderId ],
     'message' => [ 'text' => $answer ]
 ];
-
-if($messageText != "hi" && $messageText != "weather" && $messageText != "more") {
-	$answer = 'Perhaps you may try "hi", "weather" or "more"!';
-}
 
 if($messageText == "more") {  
  	$answer = ["attachment"=>[
