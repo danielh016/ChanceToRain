@@ -1,13 +1,14 @@
 <?php 
+include "parameters.php";
 $geo_lati = "-37.7963689";
 $geo_long = "144.9611738";
-$air_qua_token = "42293b49452ed774a44e10ed95c9523ceff4d4be";
-$darksky_token = "b49724af929a11f44eadf5e52a072994";
 $timezone = 10;
 $unit = "units=si";
 $jsonfile = file_get_contents("https://api.darksky.net/forecast/".$darksky_token."/".$geo_lati.",".$geo_long."?".$unit."&exclude=minutely&exclude=alert$exclude=flags");
+$jsonAir = file_get_contents("https://api.waqi.info/feed/geo:".$geo_lati.";".$geo_long."/?token=".$air_qua_token);
 
 $jsondata = json_decode($jsonfile);
+$airdata = json_decode($jsonAir);
 $temperature = $jsondata->currently->temperature;
 $precipProbability = $jsondata->currently->precipProbability;
 $todayTempHigh = $jsondata->daily->data[0]->temperatureHigh;
@@ -17,6 +18,8 @@ $highestTime = ($todayTempHighTime%86400)/3600 + 10;
 $hourlyProbability = $jsondata->hourly->data[0]->precipProbability;
 $dailySummary = $jsondata->hourly->summary;
 $uvindex = $jsondata->daily->data[0]->uvIndex;
+$pm25 = $airdata->data->iaqi->pm25->v;
+$pm25time = $airdata->data->time->s;
 
 // Retrieve the temperature for 8am and 8pm
 $eightAmTemp = 0;
