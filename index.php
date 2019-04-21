@@ -4,7 +4,7 @@ include "weather_data.php";
 
 <html>
 	<head>
-		<link rel="stylesheet" href="styles.css">
+		<link rel="stylesheet" href="css/styles.css">
 	</head>
 	<body>
 		<div id="middle">
