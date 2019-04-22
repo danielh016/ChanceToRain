@@ -21,6 +21,8 @@ $uvindex = $jsondata->daily->data[0]->uvIndex;
 $pm25 = $airdata->data->iaqi->pm25->v;
 $pm25time = $airdata->data->time->s;
 
+include "scale.php";
+
 // Retrieve the temperature for 8am and 8pm
 $eightAmTemp = 0;
 $eightPmTemp = 0;

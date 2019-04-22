@@ -14,8 +14,8 @@ include "weather_data.php";
 			<p>Highest Temperature will be <?php echo round($todayTempHigh,1)?>&#8451 at <?php echo $highestTime?>:00</p>
 			<p>The Temperature at 8:00 will be <?php echo round($eightAmTemp,1)?>&#8451</p>
 			<p>The Temperature at 20:00 will be <?php echo round($eightPmTemp,1)?>&#8451</p>
-			<p>Today's highest UV Index: <?php echo $uvindex ?></p>
-			<p>PM2.5: <?php echo $pm25 ?> at <?php echo $pm25time ?></p>
+			<p>Today's highest UV Index: <?php echo $uvindex ?>(<?php echo $uvscale ?>)</p>
+			<p>Most recent PM2.5: <?php echo $pm25 ?>(<?php echo $pmscale ?>)</p>
 			<p><?php echo $dailySummary?></p>
 		</div>
 	</body>
