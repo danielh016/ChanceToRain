@@ -16,8 +16,23 @@ As Ludwig Mies van der Rohe said,
 Chance of Rain desires to bring out a simple weather forecast website for you to get the idea of today's weather information in a glance.
   
 ## Platforms and Development Plan:
-- [ ] Facebook Chatbot
+
+- [x] Facebook Chatbot
+
 - [ ] Forecase Website
+
 - [ ] LINE Chatbot
+
 - [ ] iOS Application
+
 - [ ] Android Application
+
+## Technologies used:
+* [FB Developer API](https://developers.facebook.com/) to build a Facebook Chatbot.
+* [Dark Sky API](https://darksky.net/dev) to retreive most weather conditions.
+* [Air Quality Programmatic API](https://aqicn.org/api/) to retreive PM 2.5 index.
+* [AWS](https://aws.amazon.com/)
+## Planning to use:
+* Line API
+* Pick a FrontEnd(JS) Framework
+* Upgrade the code by using a lite PHP Framework
