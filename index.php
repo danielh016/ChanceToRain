@@ -11,7 +11,7 @@ include "weather_data.php";
   		<meta name="author" content="Daniel (RainRush) Hu">
   		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico"/>
-		<link rel="stylesheet" href="http://hyhu.me/weather/css/styles.css">
+		<link rel="stylesheet" href="https://hyhu.me/weather/css/styles.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 	</head>
 	<body>
@@ -32,7 +32,9 @@ include "weather_data.php";
   				<canvas id="sevenDayTemp" width="500" height="350"></canvas>
   			</div>
   			<div class="grid-item">
-  				<p>Today's highest UV Index: <?php echo $uvindex ?>(<?php echo $uvscale ?>)</p>
+  				<p>Current UV Index: <?php echo $currentUv ?>(<?php echo $curUvDes ?>)</p>
+  				<p>Today's highest UV Index: <?php echo $todayHighestUv ?>(<?php echo $todayHighUvDes ?>)</p>
+  				<canvas id="sevenDayUV" width="500" height="350"></canvas>
   			</div>  
   			<div class="grid-item">
   				<p>Most recent PM2.5: <?php echo $pm25 ?>(<?php echo $pmscale ?>)</p>
@@ -41,8 +43,8 @@ include "weather_data.php";
 	</body>
 
 <script>
-  	var ctx = document.getElementById( "sevenDayTemp" ),
-  		example = new Chart(ctx, {
+  	var ctx1 = document.getElementById( "sevenDayTemp" ),
+  		temperature1 = new Chart(ctx1, {
   			type: "line", // chart type
   			data: {
   				labels: <?php echo json_encode($weekday) ?>,
@@ -72,26 +74,66 @@ include "weather_data.php";
   			options: {
   				responsive: true,
   				scales: {
-						yAxes: [{
-							type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-							display: true,
-							position: 'left',
-							id: 'y-axis-1',
-						}, {
-							type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-							display: true,
-							position: 'right',
-							id: 'y-axis-2',
-							ticks: {
-								min: 0,
-								max: 100
-							},
-							// grid line settings
-							gridLines: {
-								drawOnChartArea: false, // only want the grid lines for one axis to show up
-							},
-						}],
-					}
+					yAxes: [{
+						type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+						display: true,
+						position: 'left',
+						id: 'y-axis-1',
+					}, {
+						type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+						display: true,
+						position: 'right',
+						id: 'y-axis-2',
+						ticks: {
+							min: 0,
+							max: 100
+						},
+						// grid line settings
+						gridLines: {
+							drawOnChartArea: false, // only want the grid lines for one axis to show up
+						},
+					}],
+				}
+  			}
+  		});
+
+	function colorize(data) {
+			colorArray = [];
+			for (var i in data){
+				var v = data[i];
+				var c = v < 2 ? 'rgb(82, 192, 191)'
+					: v < 5 ? 'rgb(255, 204, 97)'
+					: v < 7 ? 'rgb(253, 158, 74)'
+					: v < 10? 'rgb(255, 99, 132)'
+					: 'rgb(153, 108, 251)';	
+				colorArray.push(c);
+			}
+			
+			return colorArray;
+		}
+
+	var weekUV = <?php echo json_encode($weeklyUV) ?>;
+
+  	var ctx2 = document.getElementById( "sevenDayUV" ),
+  		uv2 = new Chart(ctx2, {
+  			type: "bar", // chart type
+  			data: {
+  				labels: <?php echo json_encode($weekday) ?>,
+        		datasets: [{
+            		data: weekUV,
+            		backgroundColor: colorize(weekUV),
+        		}]
+  			},
+  			options: {
+  				legend: false,
+  				scales: {
+  					yAxes: [{
+  						display: true,
+  						ticks: {
+  							beginAtZero: true
+  						}
+  					}]
+  				},
   			}
   		});
 </script>

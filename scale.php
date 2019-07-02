@@ -1,17 +1,20 @@
 <?php 
 	//include "weather_data.php";
 
+function scaling($uvindex) {
 	if ($uvindex < 2) {
 		$uvscale = "Low";
 	} elseif ($uvindex < 5) {
-		$uvscale = "Moderate, better put on sunscreen every 2 hours.";
+		$uvscale = "Moderate, better wear a hat and put on sunscreen every 2 hours.";
 	} elseif ($uvindex < 7) {
-		$uvscale = "High! Reduce exposure and put on sunscreen!";
+		$uvscale = "High! Reduce exposure by staying under the shade and put on sunscreen!";
 	} elseif ($uvindex < 10) {
-		$uvscale = "Very High! Reduce exposure and put on sunscreen!";
+		$uvscale = "Very High! Reduce exposure by staying under the shade and put on sunscreen!";
 	} else {
-		$uvscale = "*EXTREME*";
+		$uvscale = "*EXTREMELY DANGEROUS OUTSIDE*";
 	}
+	return $uvscale;
+}
 
 	if ($pm25 < 50) {
 		$pmscale = "Good";

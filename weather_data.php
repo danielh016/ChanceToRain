@@ -25,7 +25,8 @@ $todayTempHighTime = $jsondata->daily->data[0]->temperatureHighTime;
 $highestTime = ($todayTempHighTime%86400)/3600 + 10;
 $hourlyProbability = $jsondata->hourly->data[0]->precipProbability;
 $dailySummary = $jsondata->hourly->summary;
-$uvindex = $jsondata->daily->data[0]->uvIndex;
+$currentUv = $jsondata->currently->uvIndex;
+$todayHighestUv = $jsondata->daily->data[0]->uvIndex;
 $pm25 = $airdata->data->iaqi->pm25->v;
 $pm25time = $airdata->data->time->s;
 
@@ -34,18 +35,23 @@ $weeklyHighTemp = [];
 $weeklyLowTemp = [];
 $weeklyChanceToRain = [];
 $weekday = [];
+$weeklyUV = [];
 for ($i=1; $i<8; $i++) {
 	$tempHigh = $jsondata->daily->data[$i]->temperatureHigh;
 	$tempLow = $jsondata->daily->data[$i]->temperatureLow;
 	$chanceToRain = $jsondata->daily->data[$i]->precipProbability;
 	$day = $jsondata->daily->data[$i]->time;
+	$todayUV = $jsondata->daily->data[$i]->uvIndex;
 	array_push($weeklyHighTemp, $tempHigh);
 	array_push($weeklyLowTemp, $tempLow);
 	array_push($weeklyChanceToRain, ($chanceToRain*100));
 	array_push($weekday, date('D', $day));
+	array_push($weeklyUV, $todayUV);
 }
 
 include "scale.php"; // The descriptions of the UV / PM2.5 score.
+$curUvDes = scaling($currentUv);
+$todayHighUvDes = scaling($todayHighestUv);
 
 // Retrieve the temperature for 8am and 8pm
 $eightAmTemp = 0;
