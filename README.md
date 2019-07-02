@@ -1,5 +1,5 @@
 # ChanceToRain
-The Chance of Rain App provides you a summary of today's weather and may suggest you whether to bring an umbrella or put on your sunscreen or not today.
+The [Chance to Rain](https://weather.hyhu.me/) Website is here. Feel free to take a look at the clean, simple yet useful weather forecast website. It provides you a summary of today's weather and may suggest you whether to bring an umbrella or put on your sunscreen or not today.
 
 ## Functionalities:
 * You can turn on you notifications for FB/Line Chatbots and mobile apps to:
@@ -19,7 +19,7 @@ Chance of Rain desires to bring out a simple weather forecast website for you to
 
 - [x] Facebook Chatbot
 
-- [ ] Forecase Website
+- [x] Forecase Website
 
 - [ ] LINE Chatbot
 
@@ -31,7 +31,9 @@ Chance of Rain desires to bring out a simple weather forecast website for you to
 * [FB Developer API](https://developers.facebook.com/) to build a Facebook Chatbot.
 * [Dark Sky API](https://darksky.net/dev) to retreive most weather conditions.
 * [Air Quality Programmatic API](https://aqicn.org/api/) to retreive PM 2.5 index.
+* [Chart.js](https://www.chartjs.org/)
 * [AWS](https://aws.amazon.com/)
+
 ## Planning to use:
 * Line API
 * Pick a FrontEnd(JS) Framework
