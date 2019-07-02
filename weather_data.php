@@ -41,7 +41,7 @@ for ($i=1; $i<8; $i++) {
 	$day = $jsondata->daily->data[$i]->time;
 	array_push($weeklyHighTemp, $tempHigh);
 	array_push($weeklyLowTemp, $tempLow);
-	array_push($weeklyChanceToRain, $chanceToRain);
+	array_push($weeklyChanceToRain, ($chanceToRain*100));
 	array_push($weekday, date('D', $day));
 }
 
